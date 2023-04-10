@@ -18,21 +18,51 @@ public class Employee {
     @Column(name = "age")
     private Integer age;
     @Column(name = "city_id")
-    private int city;
+    private int cityId;
+    @ManyToOne
+    private City cities;
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, int city){
+    public Employee(int id, String first_name, String last_name, String gender, int age, int cityId){
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
-        this.city = city;
+        this.cityId = cityId;
+    };
+    public Employee(int id, String first_name, String last_name, String gender, int age){
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.age = age;
+    };
+
+    public Employee(int id, String first_name, String last_name, String gender, int age, City city){
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.age = age;
+        this.cities = city;
+    };
+
+    public Employee(String first_name, String last_name, String gender, int age, int cityId){
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.gender = gender;
+        this.age = age;
+        this.cityId = cityId;
     };
 
     public Employee(){};
 
     public Integer getAge() {
         return age;
+    }
+
+    public int getCityId() {
+        return cityId;
     }
 
     public Integer getId() {
@@ -47,8 +77,8 @@ public class Employee {
         return gender;
     }
 
-    public int getCity() {
-        return city;
+    public City getCity() {
+        return cities;
     }
 
     public String getLast_name() {
@@ -75,7 +105,11 @@ public class Employee {
         this.last_name = last_name;
     }
 
-    public void setCity(int city) {
-        this.city = city;
+    public void setCity(City city) {
+        this.cities = city;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 }

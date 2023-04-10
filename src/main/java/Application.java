@@ -8,12 +8,26 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println("\n");
-        System.out.println("Task 2\n");
-        EmployeeDAO bookDAO = new EmployeeDAOImpl();
-        List<Employee> employeeList = bookDAO.getAllEmployees();
-
-        for (Employee employee : employeeList) {
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+        Employee employee1 = new Employee("Name1", "Sur1", "nn", 32, 2);
+        CityDAO cityDAO = new CityDAOImpl();
+        List<Employee> employeeFromCity = List.of(employee1);
+        City city1 = new City(7, "City2", employeeFromCity);
+        cityDAO.createCity(city1);
+        City city2 = new City("City1");
+        cityDAO.createCity(city2);
+        Employee employee2 = new Employee("Name2", "Sur2", "nn", 41, 3);
+        employeeDAO.createEmployee(employee2);
+        System.out.println(cityDAO.getCityById(6));
+        List<City> cityList = cityDAO.getAllCities();
+        for (City city : cityList) {
+            System.out.println(city.getCity_name());
+        }
+        cityDAO.deleteCity(city1);
+        cityDAO.getAllCities();
+        City ct = new City(7, "Test");
+        cityDAO.updateCity(ct);
+        /*for (Employee employee : employeeList) {
             System.out.println("ID: " + employee.getId());
             System.out.println("Имя: " + employee.getFirst_name());
             System.out.println("Фамилия: " + employee.getLast_name());
@@ -47,7 +61,7 @@ public class Application {
         System.out.println("\n");
         System.out.println("Task 2.5\n");
         Employee employeetest3 = new Employee(11,"name","surname","gender", 99,1);
-        bookDAO.updateEmployee(employeetest3);
+        bookDAO.updateEmployee(employeetest3);*/
     }
 
 

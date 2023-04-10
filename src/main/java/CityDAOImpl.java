@@ -1,55 +1,49 @@
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
 
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class CityDAOImpl implements CityDAO {
 
-    private final String user = "postgres";
-    private final String password = "slavakakraft228";
-    private final String url = "jdbc:postgresql://localhost:5432/skypro";
-
-    public void createEmployee(Employee employee) {
+    @Override
+    public void createCity(City city) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();) {
             Transaction transaction = session.beginTransaction();
-            session.save(employee);
+            session.save(city);
             transaction.commit();
         }
     }
 
     @Override
-    public Employee getEmployeeById(int id) {
+    public City getCityById(int cityId) {
         return HibernateSessionFactoryUtil.getSessionFactory().
-                openSession().get(Employee.class, id);
+                openSession().get(City.class, cityId);
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
-        List<Employee> employeeList = (List<Employee>) HibernateSessionFactoryUtil.
+    public List<City> getAllCities() {
+        List<City> cityList = (List<City>) HibernateSessionFactoryUtil.
                 getSessionFactory().
                 openSession().createQuery
-                        ("From Employee").list();
-        return employeeList;
+                        ("From City").list();
+        return cityList;
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public void updateCity(City city) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.update(employee);
+            session.update(city);
             transaction.commit();
         }
     }
 
     @Override
-    public void deleteEmployee(Employee employee) {
+    public void deleteCity(City city) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.delete(employee);
+            session.delete(city);
             transaction.commit();
         }
     }
