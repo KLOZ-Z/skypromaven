@@ -17,8 +17,8 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private Integer age;
-    @Column(name = "city_id")
-    private int cityId;
+    @JoinColumn(name = "city_id")
+    private int city_id;
     @ManyToOne
     private City cities;
 
@@ -28,7 +28,7 @@ public class Employee {
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
-        this.cityId = cityId;
+        this.city_id = cityId;
     };
     public Employee(int id, String first_name, String last_name, String gender, int age){
         this.id = id;
@@ -52,7 +52,7 @@ public class Employee {
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
-        this.cityId = cityId;
+        this.city_id = cityId;
     };
 
     public Employee(){};
@@ -62,7 +62,7 @@ public class Employee {
     }
 
     public int getCityId() {
-        return cityId;
+        return city_id;
     }
 
     public Integer getId() {
@@ -110,6 +110,11 @@ public class Employee {
     }
 
     public void setCityId(int cityId) {
-        this.cityId = cityId;
+        this.city_id = cityId;
+    }
+
+    @Override
+    public String toString() {
+        return this.first_name+" "+city_id;
     }
 }

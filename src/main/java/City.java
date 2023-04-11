@@ -7,7 +7,7 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
-    private Integer city_id;
+    private int city_id;
     @Column(name = "city_name", length = 50, nullable = false)
     private String city_name;
     @OneToMany(mappedBy = "cities", cascade = CascadeType.ALL)
@@ -28,13 +28,17 @@ public class City {
         this.employees = employees;
     }
 
+    public City(int city_id){
+        this.city_id = city_id;
+    }
+
     public City(String city_name){
         this.city_name = city_name;
     }
 
     public City(){}
 
-    public Integer getCity_id() {
+    public int getCity_id() {
         return city_id;
     }
 
